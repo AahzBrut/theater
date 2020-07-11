@@ -46,6 +46,7 @@ class MainController(
 
     @GetMapping("bootstrap")
     fun bootStrap(): ModelAndView {
+
         theaterService.bootStrap()
 
         return homePage()
