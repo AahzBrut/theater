@@ -27,7 +27,7 @@
     </form>
 
     <div th:if="${bean.available}">
-        Seat <span th:text="${bean.seat}">seatNumber</span> is available for this performance - do you want to book it?
+        <span th:text="${bean.seat}">seatNumber</span> is available for this performance - do you want to book it?
 
         <form action="/booking" method="POST" th:object="${bean}">
             <input type="hidden" th:field="*{seat}" />

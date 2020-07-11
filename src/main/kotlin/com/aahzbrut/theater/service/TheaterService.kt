@@ -1,10 +1,10 @@
 package com.aahzbrut.theater.service
 
-import com.aahzbrut.theater.domain.Seat
+import com.aahzbrut.theater.dto.SeatResponse
 
 interface TheaterService {
 
-    fun findSeat(num: Int, row: Char) : Seat
+    fun findSeat(num: Int, row: Char) : SeatResponse
 
     fun bootStrap()
 }

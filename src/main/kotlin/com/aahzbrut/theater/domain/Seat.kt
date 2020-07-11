@@ -11,6 +11,9 @@ data class Seat(
         @SequenceGenerator(name = "seatSeqGenerator", sequenceName = "SEAT_SEQ", initialValue = 1, allocationSize = 1)
         val id: Long,
 
+        @OneToMany(cascade = [CascadeType.ALL], mappedBy = "seat")
+        val booking: List<Booking> = emptyList(),
+
         @Column(name = "SEAT_ROW")
         val row: Char,
 

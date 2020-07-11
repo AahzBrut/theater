@@ -10,6 +10,9 @@ data class Performance(
         @SequenceGenerator(name = "performanceSeqGenerator", sequenceName = "PERFORMANCE_SEQ", initialValue = 1, allocationSize = 1)
         val id: Long,
 
+        @OneToMany(cascade = [CascadeType.ALL], mappedBy = "performance")
+        val booking: List<Booking> = emptyList(),
+
         @Column(name = "NAME")
         val title: String) {
 

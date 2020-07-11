@@ -1,6 +1,6 @@
 package com.aahzbrut.theater.service.impl
 
-import com.aahzbrut.theater.domain.Seat
+import com.aahzbrut.theater.dto.SeatResponse
 import com.aahzbrut.theater.service.SeatsService
 import com.aahzbrut.theater.service.TheaterService
 import org.springframework.stereotype.Service
@@ -10,9 +10,8 @@ import org.springframework.stereotype.Service
 class TheaterServiceImpl(
         val seatsService: SeatsService) : TheaterService {
 
-    override fun findSeat(num: Int, row: Char): Seat {
-        TODO("Not yet implemented")
-    }
+    override fun findSeat(num: Int, row: Char): SeatResponse =
+            seatsService.getSeat(row, num)
 
     override fun bootStrap() {
 

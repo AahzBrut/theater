@@ -1,6 +1,9 @@
 package com.aahzbrut.theater.service.impl
 
 import com.aahzbrut.theater.domain.Seat
+import com.aahzbrut.theater.dto.SeatResponse
+import com.aahzbrut.theater.mapper.Mapper
+import com.aahzbrut.theater.mapper.SeatResponseMapper
 import com.aahzbrut.theater.repository.SeatRepository
 import com.aahzbrut.theater.service.SeatsService
 import org.springframework.stereotype.Service
@@ -8,7 +11,8 @@ import java.math.BigDecimal
 
 @Service
 class SeatsServiceImpl(
-        val seatRepository: SeatRepository) : SeatsService {
+        val seatRepository: SeatRepository,
+        val seatResponseMapper: Mapper<SeatResponse, Seat>) : SeatsService {
 
     override fun initRepository() {
 
@@ -20,13 +24,16 @@ class SeatsServiceImpl(
         seatRepository.flush()
     }
 
+    override fun getSeat(row: Char, num: Int): SeatResponse =
+            seatResponseMapper.from(seatRepository.getByRowAndNum(row, num))
+
     private fun getDefaultSeatsProps(): MutableList<Seat> {
         val hiddenSeats = mutableListOf<Seat>()
 
         for (row in 1..15) {
             for (num in 1..36) {
                 val rowChar = (row + 64).toChar()
-                hiddenSeats.add(Seat(0, rowChar, num, getPrice(row, num), getDescription(row, num)))
+                hiddenSeats.add(Seat(0, emptyList(), rowChar, num, getPrice(row, num), getDescription(row, num)))
             }
         }
         return hiddenSeats
@@ -51,5 +58,6 @@ class SeatsServiceImpl(
             else -> "Standard Seat"
         }
     }
+
 
 }
