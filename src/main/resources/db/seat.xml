@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="SEAT-001" author="AahzBrut">
+        <createSequence schemaName="REPOSITORY" sequenceName="SEAT_SEQ" startValue="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="SEAT-002" author="AahzBrut">
+        <createTable schemaName="REPOSITORY" tableName="SEAT">
+            <column name="SEAT_ID" type="BIGINT" defaultValueSequenceNext="SEAT_SEQ">
+                <constraints primaryKey="true" primaryKeyName="SEAT_PK"/>
+            </column>
+            <column name="SEAT_ROW" type="CHAR(1)">
+                <constraints nullable="false" />
+            </column>
+            <column name="SEAT_NUM" type="INT">
+                <constraints nullable="false" />
+            </column>
+            <column name="PRICE" type="DECIMAL(19,5)">
+                <constraints nullable="false" />
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(256)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
