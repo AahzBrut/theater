@@ -15,6 +15,7 @@ interface SeatRepository : JpaRepository<Seat, Long> {
     fun getByRowAndNum(row: Char, num: Int): Seat
 }
 
+@Repository
 interface BookingRepository : JpaRepository<Booking, Long> {
 
     fun existsBySeatIdAndPerformanceId(seatId: Long, performanceId: Long): Boolean
