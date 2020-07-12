@@ -1,5 +1,6 @@
 package com.aahzbrut.theater
 
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 

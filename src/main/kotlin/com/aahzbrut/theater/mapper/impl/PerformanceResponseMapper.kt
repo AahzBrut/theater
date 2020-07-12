@@ -1,7 +1,8 @@
-package com.aahzbrut.theater.mapper
+package com.aahzbrut.theater.mapper.impl
 
 import com.aahzbrut.theater.domain.Performance
 import com.aahzbrut.theater.dto.PerformanceResponse
+import com.aahzbrut.theater.mapper.Mapper
 import org.springframework.stereotype.Service
 
 @Service

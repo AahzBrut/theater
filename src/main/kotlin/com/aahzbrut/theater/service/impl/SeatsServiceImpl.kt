@@ -3,7 +3,6 @@ package com.aahzbrut.theater.service.impl
 import com.aahzbrut.theater.domain.Seat
 import com.aahzbrut.theater.dto.SeatResponse
 import com.aahzbrut.theater.mapper.Mapper
-import com.aahzbrut.theater.mapper.SeatResponseMapper
 import com.aahzbrut.theater.repository.SeatRepository
 import com.aahzbrut.theater.service.SeatsService
 import org.springframework.stereotype.Service
@@ -26,6 +25,9 @@ class SeatsServiceImpl(
 
     override fun getSeat(row: Char, num: Int): SeatResponse =
             seatResponseMapper.from(seatRepository.getByRowAndNum(row, num))
+
+    override fun getOne(id: Long): SeatResponse =
+        seatResponseMapper.from(seatRepository.getOne(id))
 
     private fun getDefaultSeatsProps(): MutableList<Seat> {
         val hiddenSeats = mutableListOf<Seat>()

@@ -9,22 +9,22 @@ data class Seat(
         @Column(name = "SEAT_ID")
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seatSeqGenerator")
         @SequenceGenerator(name = "seatSeqGenerator", sequenceName = "SEAT_SEQ", initialValue = 1, allocationSize = 1)
-        val id: Long,
+        val id: Long = 0,
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "seat")
         val booking: List<Booking> = emptyList(),
 
         @Column(name = "SEAT_ROW")
-        val row: Char,
+        val row: Char = ' ',
 
         @Column(name = "SEAT_NUM")
-        val num: Int,
+        val num: Int = 0,
 
         @Column(name = "PRICE")
-        val price: BigDecimal,
+        val price: BigDecimal = BigDecimal.ZERO,
 
         @Column(name = "DESCRIPTION")
-        val description: String) {
+        val description: String = "") {
 
     override fun toString(): String = "Seat $row-$num $$price ($description)"
 }

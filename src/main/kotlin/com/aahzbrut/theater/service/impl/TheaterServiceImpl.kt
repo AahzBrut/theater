@@ -1,6 +1,7 @@
 package com.aahzbrut.theater.service.impl
 
 import com.aahzbrut.theater.dto.SeatResponse
+import com.aahzbrut.theater.mapper.impl.SeatResponseMapper
 import com.aahzbrut.theater.service.SeatsService
 import com.aahzbrut.theater.service.TheaterService
 import org.springframework.stereotype.Service
@@ -16,5 +17,10 @@ class TheaterServiceImpl(
     override fun bootStrap() {
 
         seatsService.initRepository()
+    }
+
+    override fun getOne(id: Long): SeatResponse {
+
+        return seatsService.getOne(id)
     }
 }

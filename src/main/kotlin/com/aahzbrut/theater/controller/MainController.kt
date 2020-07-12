@@ -1,10 +1,12 @@
 package com.aahzbrut.theater.controller
 
+import com.aahzbrut.theater.dto.BookingRequest
 import com.aahzbrut.theater.dto.CheckAvailabilityBackingBean
 import com.aahzbrut.theater.service.BookingService
 import com.aahzbrut.theater.service.PerformanceService
 import com.aahzbrut.theater.service.TheaterService
 import org.springframework.stereotype.Controller
+import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -36,12 +38,32 @@ class MainController(
         bean.seat = seat
         bean.performance = performance
 
+        if (!bean.available!!)
+            bean.booking = bookingService.findBooking(seat, performance)
+
         val model = mapOf("bean" to bean,
                 "performances" to performanceService.getAll(),
                 "seatNums" to 1..36,
                 "seatRows" to 'A'..'O')
 
         return ModelAndView("seatBooking", model)
+    }
+
+
+    @PostMapping("/booking")
+    fun bookASeat(bean: CheckAvailabilityBackingBean, bindingResult: BindingResult): ModelAndView {
+
+        bookingService.reserveSeat(
+                BookingRequest(
+                        bean.seat!!.id,
+                        bean.performance!!.id,
+                        bean.customerName))
+
+        val seat = theaterService.getOne(bean.seat!!.id)
+        val performance = performanceService.getOne(bean.performance!!.id)
+        val booking = bookingService.findBooking(seat, performance)!!
+
+        return ModelAndView("bookingConfirmed", "booking", booking)
     }
 
     @GetMapping("bootstrap")

@@ -6,4 +6,5 @@ interface SeatsService {
 
     fun initRepository()
     fun getSeat(row: Char, num: Int) : SeatResponse
+    fun getOne(id: Long): SeatResponse
 }

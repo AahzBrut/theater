@@ -1,11 +1,8 @@
 package com.aahzbrut.theater.dto
 
-import com.aahzbrut.theater.domain.Performance
-import com.aahzbrut.theater.domain.Seat
-
 data class BookingResponse (
-        val id: Long,
-        val performance: Performance,
-        val seat: Seat,
-        val customerName: String
+    var id: Long,
+    var performance: PerformanceResponse,
+    var seat: SeatResponse,
+    var customerName: String
 )
