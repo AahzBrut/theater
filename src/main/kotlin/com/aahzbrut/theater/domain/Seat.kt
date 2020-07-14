@@ -5,24 +5,26 @@ import javax.persistence.*
 
 @Entity(name = "SEAT")
 @AttributeOverride(name = "id", column = Column(name = "SEAT_ID"))
-class Seat : BaseEntity {
-
-        constructor(id: Long? = null) : super() {
-                this.id = id
-        }
+class Seat (
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "seat")
-        val booking: List<Booking> = emptyList()
+        val booking: List<Booking> = emptyList(),
 
         @Column(name = "SEAT_ROW")
-        var row: Char? = null
+        var row: Char,
 
         @Column(name = "SEAT_NUM")
-        var num: Int? = null
+        var num: Int,
 
         @Column(name = "PRICE")
-        var price: BigDecimal? = null
+        var price: BigDecimal,
 
         @Column(name = "DESCRIPTION")
-        var description: String? = null
+        var description: String
+
+) : BaseEntity<Long>() {
+
+        constructor(id: Long?) {
+                this.id = id
+        }
 }

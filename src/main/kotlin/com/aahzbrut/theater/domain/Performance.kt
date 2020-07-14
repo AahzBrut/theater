@@ -4,15 +4,17 @@ import javax.persistence.*
 
 @Entity(name = "PERFORMANCE")
 @AttributeOverride(name = "id", column = Column(name = "PERFORMANCE_ID"))
-class Performance : BaseEntity {
-
-        constructor(id: Long? = null) : super() {
-                this.id = id
-        }
+class Performance (
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "performance")
-        val booking: List<Booking> = emptyList()
+        val booking: List<Booking>,
 
         @Column(name = "NAME")
-        var title: String = ""
+        val title: String = ""
+
+) : BaseEntity<Long>() {
+
+        constructor(id: Long?) {
+                this.id = id
+        }
 }

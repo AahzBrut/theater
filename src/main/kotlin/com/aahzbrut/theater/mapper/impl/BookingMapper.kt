@@ -10,13 +10,6 @@ import org.springframework.stereotype.Service
 @Service
 class BookingMapper : Mapper<Booking, BookingRequest> {
 
-    override fun from(source: BookingRequest): Booking {
-
-        val booking = Booking()
-        booking.seat = Seat(source.seatId)
-        booking.performance = Performance(source.performanceId)
-        booking.customerName = source.customerName
-
-        return booking
-    }
+    override fun from(source: BookingRequest): Booking =
+            Booking(Performance(source.performanceId), Seat(source.seatId), source.customerName!!)
 }

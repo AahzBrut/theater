@@ -4,20 +4,22 @@ import javax.persistence.*
 
 @Entity(name = "BOOKING")
 @AttributeOverride(name = "id", column = Column(name = "BOOKING_ID"))
-class Booking : BaseEntity {
-
-        constructor(id: Long? = null) : super() {
-                this.id = id
-        }
+class Booking (
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "PERFORMANCE_ID")
-        var performance: Performance? = null
+        val performance: Performance,
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "SEAT_ID")
-        var seat: Seat? = null
+        val seat: Seat,
 
         @Column(name = "CUSTOMER_NAME")
-        var customerName: String? = null
+        val customerName: String
+
+) : BaseEntity<Long>() {
+
+        constructor(id: Long?) {
+                this.id = id
+        }
 }
