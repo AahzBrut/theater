@@ -4,27 +4,25 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 @Entity(name = "SEAT")
-data class Seat(
-        @Id
-        @Column(name = "SEAT_ID")
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seatSeqGenerator")
-        @SequenceGenerator(name = "seatSeqGenerator", sequenceName = "SEAT_SEQ", initialValue = 1, allocationSize = 1)
-        val id: Long = 0,
+@AttributeOverride(name = "id", column = Column(name = "SEAT_ID"))
+class Seat : BaseEntity {
+
+        constructor(id: Long? = null) : super() {
+                this.id = id
+        }
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "seat")
-        val booking: List<Booking> = emptyList(),
+        val booking: List<Booking> = emptyList()
 
         @Column(name = "SEAT_ROW")
-        val row: Char = ' ',
+        var row: Char? = null
 
         @Column(name = "SEAT_NUM")
-        val num: Int = 0,
+        var num: Int? = null
 
         @Column(name = "PRICE")
-        val price: BigDecimal = BigDecimal.ZERO,
+        var price: BigDecimal? = null
 
         @Column(name = "DESCRIPTION")
-        val description: String = "") {
-
-    override fun toString(): String = "Seat $row-$num $$price ($description)"
+        var description: String? = null
 }

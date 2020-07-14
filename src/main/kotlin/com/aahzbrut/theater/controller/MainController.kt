@@ -53,11 +53,12 @@ class MainController(
     @PostMapping("/booking")
     fun bookASeat(bean: CheckAvailabilityBackingBean, bindingResult: BindingResult): ModelAndView {
 
-        bookingService.reserveSeat(
-                BookingRequest(
-                        bean.seat!!.id,
-                        bean.performance!!.id,
-                        bean.customerName))
+        val bookingRequest = BookingRequest()
+        bookingRequest.seatId = bean.seat?.id
+        bookingRequest.performanceId = bean.performance?.id
+        bookingRequest.customerName = bean.customerName
+
+        bookingService.addBooking(bookingRequest)
 
         val seat = theaterService.getOne(bean.seat!!.id)
         val performance = performanceService.getOne(bean.performance!!.id)

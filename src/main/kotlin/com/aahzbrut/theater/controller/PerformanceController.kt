@@ -19,7 +19,7 @@ class PerformanceController (
 
     @GetMapping("/add")
     fun addPerformance() =
-            ModelAndView("performances/add", "performance", PerformanceAddRequest(0, ""))
+            ModelAndView("performances/add", "performance", PerformanceAddRequest())
 
     @PostMapping("/save")
     fun savePerformance(request: PerformanceAddRequest) : String {

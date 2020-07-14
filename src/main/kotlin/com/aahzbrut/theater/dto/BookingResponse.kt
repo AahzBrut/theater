@@ -1,8 +1,8 @@
 package com.aahzbrut.theater.dto
 
 data class BookingResponse (
-    var id: Long,
-    var performance: PerformanceResponse,
-    var seat: SeatResponse,
-    var customerName: String
+    val id: Long?,
+    val performance: PerformanceResponse?,
+    val seat: SeatResponse?,
+    val customerName: String?
 )

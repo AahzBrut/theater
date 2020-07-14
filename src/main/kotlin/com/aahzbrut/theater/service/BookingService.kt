@@ -7,6 +7,7 @@ import com.aahzbrut.theater.dto.SeatResponse
 
 interface BookingService {
     fun isSeatFree(seat: SeatResponse, performance: PerformanceResponse?): Boolean
-    fun reserveSeat(bookingRequest: BookingRequest): Any
+    fun addBooking(bookingRequest: BookingRequest): Long
     fun findBooking(seat: SeatResponse, performance: PerformanceResponse): BookingResponse?
+    fun getBooking(bookingId: Long):BookingResponse
 }

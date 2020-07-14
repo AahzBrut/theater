@@ -7,6 +7,7 @@ import com.aahzbrut.theater.mapper.Mapper
 import com.aahzbrut.theater.repository.PerformanceRepository
 import com.aahzbrut.theater.service.PerformanceService
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 
 @Service
 class PerformanceServiceImpl(
@@ -15,12 +16,15 @@ class PerformanceServiceImpl(
         val performanceMapper: Mapper<Performance, PerformanceAddRequest>
 ) : PerformanceService {
 
+    @Transactional
     override fun getAll(): List<PerformanceResponse> =
             performanceResponseMapper.from(performanceRepository.findAll())
 
+    @Transactional
     override fun getOne(id: Long): PerformanceResponse =
             performanceResponseMapper.from(performanceRepository.getOne(id))
 
+    @Transactional
     override fun save(request: PerformanceAddRequest) {
 
         performanceRepository.saveAndFlush(performanceMapper.from(request))

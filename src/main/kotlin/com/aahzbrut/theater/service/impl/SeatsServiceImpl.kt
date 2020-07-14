@@ -35,7 +35,12 @@ class SeatsServiceImpl(
         for (row in 1..15) {
             for (num in 1..36) {
                 val rowChar = (row + 64).toChar()
-                hiddenSeats.add(Seat(0, emptyList(), rowChar, num, getPrice(row, num), getDescription(row, num)))
+                val seat = Seat(0)
+                seat.row = rowChar
+                seat.num = num
+                seat.description = getDescription(row, num)
+                seat.price = getPrice(row, num)
+                hiddenSeats.add(seat)
             }
         }
         return hiddenSeats
