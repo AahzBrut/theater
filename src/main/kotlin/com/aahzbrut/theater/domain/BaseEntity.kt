@@ -19,7 +19,6 @@ abstract class BaseEntity<T : Serializable> {
     }
 
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @GenericGenerator(
@@ -32,9 +31,11 @@ abstract class BaseEntity<T : Serializable> {
     )
     var id: T? = null
 
+    @Suppress("unused")
     constructor(id: T?) {
         this.id = id
     }
+
     constructor()
 
     override fun equals(other: Any?): Boolean {

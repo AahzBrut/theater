@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity(name = "BOOKING")
 @AttributeOverride(name = "id", column = Column(name = "BOOKING_ID"))
-class Booking (
+class Booking(
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "PERFORMANCE_ID")
@@ -19,7 +19,8 @@ class Booking (
 
 ) : BaseEntity<Long>() {
 
-        constructor(id: Long?) {
-                this.id = id
-        }
+    @Suppress("unused")
+    constructor(id: Long?) {
+        super.id = id
+    }
 }
