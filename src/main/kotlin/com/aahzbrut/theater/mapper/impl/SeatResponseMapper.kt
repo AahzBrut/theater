@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service
 class SeatResponseMapper : Mapper<SeatResponse?, Seat?> {
 
     override fun from(source: Seat?): SeatResponse? =
-            SeatResponse(
-                    source!!.id!!,
-                    source.row!!,
-                    source.num!!,
-                    source.price!!,
-                    source.description!!
-            )
+            source?.id?.let {
+                SeatResponse(
+                        it,
+                        source.row,
+                        source.num,
+                        source.price,
+                        source.description
+                )
+            }
 }

@@ -7,14 +7,14 @@ import javax.persistence.*
 class Performance(
 
         @OneToMany(cascade = [CascadeType.ALL], mappedBy = "performance")
-        val booking: List<Booking>,
+        val booking: List<Booking> = emptyList(),
 
         @Column(name = "NAME")
-        val title: String = ""
+        var title: String
 
 ) : BaseEntity<Long>() {
 
-    constructor(id: Long?) {
+    constructor(id: Long?) : this(title = "") {
         super.id = id
     }
 }

@@ -22,9 +22,9 @@ class Seat(
         @Column(name = "DESCRIPTION")
         var description: String
 
-) : BaseEntity<Long>() {
+) : BaseEntity<Long>(id = null) {
 
-    constructor(id: Long?) {
+    constructor(id: Long?) : this(row = ' ', num = 1, price = BigDecimal.ZERO, description = "") {
         super.id = id
     }
 }

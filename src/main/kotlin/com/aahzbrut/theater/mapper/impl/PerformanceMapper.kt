@@ -9,5 +9,5 @@ import org.springframework.stereotype.Service
 class PerformanceMapper : Mapper<Performance, PerformanceAddRequest> {
 
     override fun from(source: PerformanceAddRequest): Performance =
-            Performance(emptyList(), source.title!!)
+            Performance(emptyList(), source.title ?: "")
 }

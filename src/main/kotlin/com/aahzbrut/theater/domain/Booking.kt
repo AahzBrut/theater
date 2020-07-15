@@ -8,19 +8,13 @@ class Booking(
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "PERFORMANCE_ID")
-        val performance: Performance,
+        var performance: Performance,
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "SEAT_ID")
-        val seat: Seat,
+        var seat: Seat,
 
         @Column(name = "CUSTOMER_NAME")
-        val customerName: String
+        var customerName: String
 
-) : BaseEntity<Long>() {
-
-    @Suppress("unused")
-    constructor(id: Long?) {
-        super.id = id
-    }
-}
+) : BaseEntity<Long>()

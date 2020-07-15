@@ -12,31 +12,23 @@ import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
-abstract class BaseEntity<T : Serializable> {
+abstract class BaseEntity<T : Serializable> (
+        @Id
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+        @GenericGenerator(
+                name = "sequenceGenerator",
+                strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+                parameters = [
+                    Parameter(name = CONFIG_PREFER_SEQUENCE_PER_ENTITY, value = "true"),
+                    Parameter(name = CONFIG_SEQUENCE_PER_ENTITY_SUFFIX, value = "_SEQ")
+                ]
+        )
+        var id: T? = null
+) {
 
     companion object {
         private val serialVersionUID = -5554308939380869754L
     }
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @GenericGenerator(
-            name = "sequenceGenerator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = [
-                Parameter(name = CONFIG_PREFER_SEQUENCE_PER_ENTITY, value = "true"),
-                Parameter(name = CONFIG_SEQUENCE_PER_ENTITY_SUFFIX, value = "_SEQ")
-            ]
-    )
-    var id: T? = null
-
-    @Suppress("unused")
-    constructor(id: T?) {
-        this.id = id
-    }
-
-    constructor()
 
     override fun equals(other: Any?): Boolean {
 

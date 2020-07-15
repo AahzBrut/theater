@@ -9,5 +9,5 @@ import org.springframework.stereotype.Service
 class PerformanceResponseMapper : Mapper<PerformanceResponse?, Performance?> {
 
     override fun from(source: Performance?): PerformanceResponse? =
-            PerformanceResponse(source!!.id!!, source.title)
+            source?.id?.let { PerformanceResponse(it, source.title) }
 }
